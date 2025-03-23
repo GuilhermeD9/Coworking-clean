@@ -3,7 +3,6 @@ package dev.guilherme.CoworClean.infra.persistence;
 import dev.guilherme.CoworClean.core.enums.Status;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
