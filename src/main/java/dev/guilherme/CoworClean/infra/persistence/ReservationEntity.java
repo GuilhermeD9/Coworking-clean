@@ -17,6 +17,7 @@ public class ReservationEntity {
     String locador;
     LocalDateTime inicio;
     LocalDateTime fim;
+    @Enumerated(EnumType.STRING)
     Status status;
 
     public ReservationEntity(Long id, String sala, String locador, LocalDateTime inicio, LocalDateTime fim, Status status) {
