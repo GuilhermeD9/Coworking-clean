@@ -2,7 +2,6 @@ package dev.guilherme.CoworClean.infra.mapper;
 
 import dev.guilherme.CoworClean.core.entities.Reservation;
 import dev.guilherme.CoworClean.infra.dtos.ReservationDTO;
-import dev.guilherme.CoworClean.infra.persistence.ReservationEntity;
 import org.springframework.stereotype.Component;
 
 @Component
