@@ -1,0 +1,20 @@
+package dev.guilherme.CoworClean.infra.mapper;
+
+import dev.guilherme.CoworClean.core.entities.Reservation;
+import dev.guilherme.CoworClean.infra.dtos.ReservationDTO;
+import dev.guilherme.CoworClean.infra.persistence.ReservationEntity;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ReservationDtoMapper {
+    public Reservation toReservation(ReservationDTO dto) {
+        return new Reservation(null, dto.sala(), dto.locador(),
+                dto.inicio(), dto.fim(), dto.status());
+
+    }
+
+    public ReservationDTO toDto(Reservation entity) {
+        return new ReservationDTO(entity.sala(), entity.locador(), entity.inicio(),
+                entity.fim(), entity.status());
+    }
+}
