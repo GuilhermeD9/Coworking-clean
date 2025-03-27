@@ -7,6 +7,8 @@ import dev.guilherme.CoworClean.infra.persistence.ReservationEntity;
 import dev.guilherme.CoworClean.infra.persistence.ReservationRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ReservationRepositoryGateway implements ReservationGateway {
     private final ReservationRepository repository;
@@ -22,5 +24,10 @@ public class ReservationRepositoryGateway implements ReservationGateway {
         ReservationEntity entity = mapper.toEntity(reservation);
         ReservationEntity newReservation = repository.save(entity);
         return mapper.toReservation(newReservation);
+    }
+
+    @Override
+    public List<Reservation> listarReservas() {
+        return List.of();
     }
 }

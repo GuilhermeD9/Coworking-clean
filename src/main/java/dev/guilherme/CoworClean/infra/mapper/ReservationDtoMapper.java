@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReservationDtoMapper {
     public Reservation toReservation(ReservationDTO dto) {
-        return new Reservation(null, dto.sala(), dto.locador(),
+        return new Reservation(dto.id(), dto.sala(), dto.locador(),
                 dto.inicio(), dto.fim(), dto.status());
 
     }
 
     public ReservationDTO toDto(Reservation entity) {
-        return new ReservationDTO(entity.sala(), entity.locador(), entity.inicio(),
+        return new ReservationDTO(entity.id(), entity.sala(), entity.locador(), entity.inicio(),
                 entity.fim(), entity.status());
     }
 }

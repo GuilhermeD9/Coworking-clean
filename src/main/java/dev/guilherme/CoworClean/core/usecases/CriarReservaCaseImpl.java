@@ -12,6 +12,6 @@ public class CriarReservaCaseImpl implements CriarReservaCase{
 
     @Override
     public Reservation execute(Reservation reserva) {
-        return null;
+        return reservationGateway.criarReserva(reserva);
     }
 }
