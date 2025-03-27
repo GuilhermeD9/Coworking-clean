@@ -28,6 +28,6 @@ public class ReservationRepositoryGateway implements ReservationGateway {
 
     @Override
     public List<Reservation> listarReservas() {
-        return List.of();
+        return mapper.listEntityToDomain(repository.findAll());
     }
 }

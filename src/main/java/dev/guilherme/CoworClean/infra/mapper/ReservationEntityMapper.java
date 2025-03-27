@@ -4,6 +4,9 @@ import dev.guilherme.CoworClean.core.entities.Reservation;
 import dev.guilherme.CoworClean.infra.persistence.ReservationEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class ReservationEntityMapper {
     public ReservationEntity toEntity(Reservation reservation) {
@@ -26,5 +29,11 @@ public class ReservationEntityMapper {
                 reservationEntity.getFim(),
                 reservationEntity.getStatus()
         );
+    }
+
+    public List<Reservation> listEntityToDomain(List<ReservationEntity> entities) {
+        return entities.stream()
+                .map(this::toReservation)
+                .collect(Collectors.toList());
     }
 }
