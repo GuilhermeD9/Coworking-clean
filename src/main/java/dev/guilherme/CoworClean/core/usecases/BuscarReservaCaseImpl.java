@@ -2,10 +2,12 @@ package dev.guilherme.CoworClean.core.usecases;
 
 import dev.guilherme.CoworClean.core.entities.Reservation;
 
+import java.util.List;
+
 public class BuscarReservaCaseImpl implements BuscarReservaCase{
 
     @Override
-    public Reservation execute(Long id) {
-        return null;
+    public List<Reservation> execute() {
+        return List.of();
     }
 }
