@@ -3,17 +3,15 @@ package dev.guilherme.CoworClean.core.usecases;
 import dev.guilherme.CoworClean.core.entities.Reservation;
 import dev.guilherme.CoworClean.core.getaway.ReservationGateway;
 
-import java.util.List;
-
-public class BuscarReservaCaseImpl implements BuscarReservaCase {
+public class CriarReservaUsecaseImpl implements CriarReservaUsecase {
     private final ReservationGateway reservationGateway;
 
-    public BuscarReservaCaseImpl(ReservationGateway reservationGateway) {
+    public CriarReservaUsecaseImpl(ReservationGateway reservationGateway) {
         this.reservationGateway = reservationGateway;
     }
 
     @Override
-    public List<Reservation> execute() {
-        return reservationGateway.listarReservas();
+    public Reservation execute(Reservation reserva) {
+        return reservationGateway.criarReserva(reserva);
     }
 }
