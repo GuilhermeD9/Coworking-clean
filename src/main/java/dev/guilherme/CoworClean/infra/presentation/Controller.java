@@ -5,9 +5,12 @@ import dev.guilherme.CoworClean.core.usecases.BuscarReservaUsecase;
 import dev.guilherme.CoworClean.core.usecases.CriarReservaUsecase;
 import dev.guilherme.CoworClean.infra.dtos.ReservationDTO;
 import dev.guilherme.CoworClean.infra.mapper.ReservationDtoMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,9 +27,12 @@ public class Controller {
     }
 
     @PostMapping
-    public ReservationDTO criarReserva(@RequestBody ReservationDTO reservationDto) {
+    public ResponseEntity<Map<String, Object>> criarReserva(@RequestBody ReservationDTO reservationDto) {
         Reservation newReservation = criarReservaUsecase.execute(reservationDtoMapper.toReservation(reservationDto));
-        return reservationDtoMapper.toDto(newReservation);
+        Map<String, Object> response = new HashMap<>();
+        response.put("Messagem: ", "Reserva cadastrada com sucesso!");
+        response.put("Dados: ", reservationDtoMapper.toDto(newReservation));
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
