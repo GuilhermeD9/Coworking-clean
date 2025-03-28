@@ -8,6 +8,7 @@ import dev.guilherme.CoworClean.infra.mapper.ReservationDtoMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/reservation")
@@ -30,7 +31,8 @@ public class Controller {
 
     @GetMapping
     public List<ReservationDTO> listarReservas() {
-        List<Reservation> reservations = buscarReservaUsecase.execute();
-        return reservationDtoMapper.listResrvationToDto(reservations);
+        return buscarReservaUsecase.execute().stream()
+                .map(reservationDtoMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
