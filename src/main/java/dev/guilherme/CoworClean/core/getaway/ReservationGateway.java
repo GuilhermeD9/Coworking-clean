@@ -7,4 +7,5 @@ import java.util.List;
 public interface ReservationGateway {
     Reservation criarReserva(Reservation reservation);
     List<Reservation> listarReservas();
+    boolean salaOcupada(String sala);
 }

@@ -29,5 +29,11 @@ public class ReservationRepositoryGateway implements ReservationGateway {
     @Override
     public List<Reservation> listarReservas() {
         return repository.findAll().stream().map(mapper::toReservation).toList();
+   }
+
+    @Override
+    public boolean salaOcupada(String sala) {
+        return repository.findAll().stream()
+                .anyMatch(reservation -> reservation.getSala().equalsIgnoreCase(sala));
     }
 }
