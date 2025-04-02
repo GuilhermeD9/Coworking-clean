@@ -47,13 +47,8 @@ public class Controller {
     }
 
     @GetMapping("/sala/{sala}")
-    public ResponseEntity<Object> buscarReservaPorSala(@PathVariable String sala) {
-        Optional<Reservation> reserva = filtrarPorSalaUsecase.execute(sala);
-
-        if (reserva.isPresent()) {
-            return ResponseEntity.ok(reserva);
-        } else {
-            return ResponseEntity.badRequest().body("Reserva não encontrada na sala " + sala);
-        }
+    public ResponseEntity<Reservation> buscarReservaPorSala(@PathVariable String sala) {
+        Reservation reservation = filtrarPorSalaUsecase.execute(sala);
+        return ResponseEntity.ok(reservation);
     }
 }

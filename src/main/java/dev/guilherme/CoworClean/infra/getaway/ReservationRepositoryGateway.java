@@ -40,6 +40,6 @@ public class ReservationRepositoryGateway implements ReservationGateway {
 
     @Override
     public Optional<Reservation> filtrarReservaPorSala(String sala) {
-        return repository.findBySalaIs(sala);
+        return repository.findBySala(sala);
     }
 }
