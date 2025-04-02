@@ -8,6 +8,7 @@ import dev.guilherme.CoworClean.infra.persistence.ReservationRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ReservationRepositoryGateway implements ReservationGateway {
@@ -35,5 +36,10 @@ public class ReservationRepositoryGateway implements ReservationGateway {
     public boolean salaOcupada(String sala) {
         return repository.findAll().stream()
                 .anyMatch(reservation -> reservation.getSala().equalsIgnoreCase(sala));
+    }
+
+    @Override
+    public Optional<Reservation> filtrarReservaPorSala(String sala) {
+        return repository.findBySalaIs(sala);
     }
 }

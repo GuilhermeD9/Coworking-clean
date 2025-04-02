@@ -3,6 +3,7 @@ package dev.guilherme.CoworClean.infra.presentation;
 import dev.guilherme.CoworClean.core.entities.Reservation;
 import dev.guilherme.CoworClean.core.usecases.BuscarReservaUsecase;
 import dev.guilherme.CoworClean.core.usecases.CriarReservaUsecase;
+import dev.guilherme.CoworClean.core.usecases.FiltroSalaUsecase;
 import dev.guilherme.CoworClean.infra.dtos.ReservationDTO;
 import dev.guilherme.CoworClean.infra.mapper.ReservationDtoMapper;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -18,11 +20,13 @@ import java.util.stream.Collectors;
 public class Controller {
     private final CriarReservaUsecase criarReservaUsecase;
     private final BuscarReservaUsecase buscarReservaUsecase;
+    private final FiltroSalaUsecase filtroSalaUsecase;
     private final ReservationDtoMapper reservationDtoMapper;
 
-    public Controller(CriarReservaUsecase criarReservaUsecase, BuscarReservaUsecase buscarReservaUsecase, ReservationDtoMapper reservationDtoMapper) {
+    public Controller(CriarReservaUsecase criarReservaUsecase, BuscarReservaUsecase buscarReservaUsecase, FiltroSalaUsecase filtroSalaUsecase, ReservationDtoMapper reservationDtoMapper) {
         this.criarReservaUsecase = criarReservaUsecase;
         this.buscarReservaUsecase = buscarReservaUsecase;
+        this.filtroSalaUsecase = filtroSalaUsecase;
         this.reservationDtoMapper = reservationDtoMapper;
     }
 
@@ -40,5 +44,16 @@ public class Controller {
         return buscarReservaUsecase.execute().stream()
                 .map(reservationDtoMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/sala/{sala}")
+    public ResponseEntity<Object> buscarReservaPorSala(@PathVariable String sala) {
+        Optional<Reservation> reserva = filtroSalaUsecase.execute(sala);
+
+        if (reserva.isPresent()) {
+            return ResponseEntity.ok(reserva);
+        } else {
+            return ResponseEntity.badRequest().body("Reserva não encontrada na sala " + sala);
+        }
     }
 }
