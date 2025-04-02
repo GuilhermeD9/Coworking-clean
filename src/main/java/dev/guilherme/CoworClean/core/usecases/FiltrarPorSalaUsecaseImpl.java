@@ -5,10 +5,10 @@ import dev.guilherme.CoworClean.core.getaway.ReservationGateway;
 
 import java.util.Optional;
 
-public class FiltroSalaUsecaseImpl implements FiltroSalaUsecase {
+public class FiltrarPorSalaUsecaseImpl implements FiltrarPorSalaUsecase {
     private final ReservationGateway reservationGateway;
 
-    public FiltroSalaUsecaseImpl(ReservationGateway reservationGateway) {
+    public FiltrarPorSalaUsecaseImpl(ReservationGateway reservationGateway) {
         this.reservationGateway = reservationGateway;
     }
 

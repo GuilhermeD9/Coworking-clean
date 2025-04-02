@@ -3,7 +3,7 @@ package dev.guilherme.CoworClean.infra.presentation;
 import dev.guilherme.CoworClean.core.entities.Reservation;
 import dev.guilherme.CoworClean.core.usecases.BuscarReservaUsecase;
 import dev.guilherme.CoworClean.core.usecases.CriarReservaUsecase;
-import dev.guilherme.CoworClean.core.usecases.FiltroSalaUsecase;
+import dev.guilherme.CoworClean.core.usecases.FiltrarPorSalaUsecase;
 import dev.guilherme.CoworClean.infra.dtos.ReservationDTO;
 import dev.guilherme.CoworClean.infra.mapper.ReservationDtoMapper;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
 public class Controller {
     private final CriarReservaUsecase criarReservaUsecase;
     private final BuscarReservaUsecase buscarReservaUsecase;
-    private final FiltroSalaUsecase filtroSalaUsecase;
+    private final FiltrarPorSalaUsecase filtrarPorSalaUsecase;
     private final ReservationDtoMapper reservationDtoMapper;
 
-    public Controller(CriarReservaUsecase criarReservaUsecase, BuscarReservaUsecase buscarReservaUsecase, FiltroSalaUsecase filtroSalaUsecase, ReservationDtoMapper reservationDtoMapper) {
+    public Controller(CriarReservaUsecase criarReservaUsecase, BuscarReservaUsecase buscarReservaUsecase, FiltrarPorSalaUsecase filtrarPorSalaUsecase, ReservationDtoMapper reservationDtoMapper) {
         this.criarReservaUsecase = criarReservaUsecase;
         this.buscarReservaUsecase = buscarReservaUsecase;
-        this.filtroSalaUsecase = filtroSalaUsecase;
+        this.filtrarPorSalaUsecase = filtrarPorSalaUsecase;
         this.reservationDtoMapper = reservationDtoMapper;
     }
 
@@ -48,7 +48,7 @@ public class Controller {
 
     @GetMapping("/sala/{sala}")
     public ResponseEntity<Object> buscarReservaPorSala(@PathVariable String sala) {
-        Optional<Reservation> reserva = filtroSalaUsecase.execute(sala);
+        Optional<Reservation> reserva = filtrarPorSalaUsecase.execute(sala);
 
         if (reserva.isPresent()) {
             return ResponseEntity.ok(reserva);

@@ -18,7 +18,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public FiltroSalaUsecase filtrarSala(ReservationGateway gateway) {
-        return new FiltroSalaUsecaseImpl(gateway);
+    public FiltrarPorSalaUsecase filtrarSala(ReservationGateway gateway) {
+        return new FiltrarPorSalaUsecaseImpl(gateway);
     }
 }
