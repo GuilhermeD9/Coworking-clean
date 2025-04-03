@@ -3,6 +3,10 @@ package dev.guilherme.CoworClean.core.usecases;
 import dev.guilherme.CoworClean.core.entities.Reservation;
 import dev.guilherme.CoworClean.core.getaway.ReservationGateway;
 import dev.guilherme.CoworClean.infra.exceptions.DuplicateRoomException;
+import dev.guilherme.CoworClean.infra.exceptions.NotNullException;
+
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class CriarReservaUsecaseImpl implements CriarReservaUsecase {
     private final ReservationGateway reservationGateway;

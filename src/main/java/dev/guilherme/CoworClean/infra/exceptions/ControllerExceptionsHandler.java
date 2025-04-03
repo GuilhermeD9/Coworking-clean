@@ -18,4 +18,14 @@ public class ControllerExceptionsHandler {
         response.put("Message: ", "The room has be used, change the room.");
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(NotFoundRoomException.class)
+    public ResponseEntity<String> handleNotFoundRoom(NotFoundRoomException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(NotNullException.class)
+    public ResponseEntity<String> handleNullValue(NotNullException ex) {
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ex.getMessage());
+    }
 }
