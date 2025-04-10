@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,12 +21,26 @@ public class ControllerExceptionsHandler {
     }
 
     @ExceptionHandler(NotFoundRoomException.class)
-    public ResponseEntity<String> handleNotFoundRoom(NotFoundRoomException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    public ResponseEntity<Map<String,String>> handleNotFoundRoom(NotFoundRoomException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("Error: ", ex.getMessage());
+        response.put("Message: ", "The room was not found, check the identifier again.");
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(NotNullException.class)
-    public ResponseEntity<String> handleNullValue(NotNullException ex) {
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ex.getMessage());
+    public ResponseEntity<Object> handleNullValue(NotNullException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Campos inválidos");
+        response.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
+
+/* TODO: PROXIMO DESAFIO, GERAR UM IDENTIFICADOR AUTOMATICO
+ criar um usecase, implementar, criar uma função usando bibliotecas
+ matemáticas para o identificador aleatorio 6 letras e randomico.
+ */
