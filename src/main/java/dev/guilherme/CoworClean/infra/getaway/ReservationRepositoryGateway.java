@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Component
 public class ReservationRepositoryGateway implements ReservationGateway {
@@ -41,5 +42,19 @@ public class ReservationRepositoryGateway implements ReservationGateway {
     @Override
     public Optional<Reservation> filtrarReservaPorSala(String sala) {
         return repository.findBySala(sala);
+    }
+
+    @Override
+    public String gerarIdentificador() {
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random random = new Random();
+
+        StringBuilder letrasGeradas = new StringBuilder(2);
+        for (int i = 0; i < 2; i++) {
+            letrasGeradas.append(letras.charAt(random.nextInt(letras.length())));
+        }
+        int numeros = 1000 + random.nextInt(9000);
+
+        return letrasGeradas.toString() + numeros;
     }
 }

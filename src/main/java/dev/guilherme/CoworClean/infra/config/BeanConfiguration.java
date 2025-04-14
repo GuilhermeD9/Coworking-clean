@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfiguration {
     @Bean
-    public CriarReservaUsecase criarReserva(ReservationGateway gateway) {
-        return new CriarReservaUsecaseImpl(gateway);
+    public CriarReservaUsecase criarReserva(ReservationGateway gateway, IdentificadorSalaUsecase usecase) {
+        return new CriarReservaUsecaseImpl(gateway, usecase);
     }
 
     @Bean
@@ -20,5 +20,10 @@ public class BeanConfiguration {
     @Bean
     public FiltrarPorSalaUsecase filtrarSala(ReservationGateway gateway) {
         return new FiltrarPorSalaUsecaseImpl(gateway);
+    }
+
+    @Bean
+    public IdentificadorSalaUsecase gerarIdSala(ReservationGateway gateway) {
+        return new IdentificadorSalaUsecaseImpl(gateway);
     }
 }

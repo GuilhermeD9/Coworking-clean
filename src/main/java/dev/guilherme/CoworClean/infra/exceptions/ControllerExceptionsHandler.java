@@ -39,8 +39,3 @@ public class ControllerExceptionsHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
-
-/* TODO: PROXIMO DESAFIO, GERAR UM IDENTIFICADOR AUTOMATICO
- criar um usecase, implementar, criar uma função usando bibliotecas
- matemáticas para o identificador aleatorio 6 letras e randomico.
- */
