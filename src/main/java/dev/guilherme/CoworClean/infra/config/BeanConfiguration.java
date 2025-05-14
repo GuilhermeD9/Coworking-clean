@@ -23,6 +23,11 @@ public class BeanConfiguration {
     }
 
     @Bean
+    public DeletarReservaUsecase deletarReserva(ReservationGateway gateway) {
+        return new DeletarReservaUsecaseImpl(gateway);
+    }
+
+    @Bean
     public IdentificadorSalaUsecase gerarIdSala(ReservationGateway gateway) {
         return new IdentificadorSalaUsecaseImpl(gateway);
     }

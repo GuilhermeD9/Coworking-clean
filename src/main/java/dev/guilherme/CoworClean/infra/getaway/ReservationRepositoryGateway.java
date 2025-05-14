@@ -45,6 +45,11 @@ public class ReservationRepositoryGateway implements ReservationGateway {
     }
 
     @Override
+    public void deletarReserva(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
     public String gerarIdentificador() {
         String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random random = new Random();

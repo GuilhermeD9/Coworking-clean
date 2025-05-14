@@ -10,5 +10,6 @@ public interface ReservationGateway {
     List<Reservation> listarReservas();
     boolean salaOcupada(String sala);
     Optional<Reservation> filtrarReservaPorSala(String sala);
+    void deletarReserva(Long id);
     String gerarIdentificador();
 }
